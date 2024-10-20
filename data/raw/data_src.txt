@@ -1,0 +1,3 @@
+To conserve storage space, the raw image data is not included in this repo. 
+The raw image data can be downloaded from https://www.kaggle.com/datasets/sudhanshu2198/ripik-hackfest
+I used train/train/images as raw/images and train/train/train.csv as raw/labels.csv
