@@ -41,7 +41,7 @@ For the most part, this project uses the following python packages: sklearn, ker
 
 The images under the directory data/processed/ are compressed and ready for model training, however, code that performed this preprocessing can be seen in src/data_loader.py. The src/ directory also includes train.py, which includes the functions necessary to define and compile the CNN architectures, as well as run cross-validation for a keras classification model.
 
-CV scores calculated from the train_CV function in train.py are stored in results/cv_scores.csv. Models checkpoint are saved at results/models/. 
+CV scores calculated from the train_CV function in train.py are stored in results/cv_scores.csv. Models checkpoint are saved at results/models/, though any previously trained model files are excluded from the repo to save on storage space. 
 
 Reports and all images used for reports can be found in the reports/ directory.
 
