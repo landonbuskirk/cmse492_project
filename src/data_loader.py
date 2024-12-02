@@ -10,6 +10,12 @@ import keras
 
 
 def process_raw_img_data():
+    '''
+    This function reads the raw images and labels, splits them
+    into train and test sets, and stores the processed images
+    and labels into the processed data folder.
+    '''
+
 
     labels = pd.read_csv('../data/raw/labels.csv', index_col=0)
     labels = labels[labels['label'] != 1]
@@ -33,6 +39,20 @@ def process_raw_img_data():
 
 
 def load_data(folder, flat=False, test=False):
+    '''
+    This function loads images and labels from the specified folder.
+    The images are resized to 130x180 pixels and converted to grayscale.
+    The images are then stacked into a 4D matrix (samples x height x width x 1).
+    The labels are one-hot encoded.
+    
+    Parameters:
+        folder (str): The path to the folder containing the images.
+        flat (bool): Whether to flatten the images.
+        test (bool): Whether to load the test set.
+    
+    Returns:
+        tuple: A tuple containing the images and labels.
+    '''
 
     images = [] # Initialize an empty list to store images
     labels = [] # Initialize an empty list to store labels

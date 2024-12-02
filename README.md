@@ -39,10 +39,13 @@ For the most part, this project uses the following python packages: sklearn, ker
 
 ### 4. Run the Code
 
-The images under the directory data/processed/ are compressed and ready for model training, however, code that performed this preprocessing can be seen in src/data_loader.py
+The images under the directory data/processed/ are compressed and ready for model training, however, code that performed this preprocessing can be seen in src/data_loader.py. The src/ directory also includes train.py, which includes the functions necessary to define and compile the CNN architectures, as well as run cross-validation for a keras classification model.
 
+CV scores calculated from the train_CV function in train.py are stored in results/cv_scores.csv. Models checkpoint are saved at results/models/. 
 
-Running the main notebook, cnn_modeling.ipynb, will perform CV on several CNNs, and save CV performance metrics in the results folder, train the final model, and plot final results.
+Reports and all images used for reports can be found in the reports/ directory.
+
+Finally, the notebooks/ directory contains all jupyter notebooks with the work of the project. EDA.ipynb includes data exploration, data preprocessing, and PCA. baseline_models.ipynb includes the fitting and evaluation of the 4 baseline models tested (MCC, MLR, MLP, shallow CNN). diagram.ipynb includes a few lines to generate visual representations of our CNN architectures. Running the main notebook, cnn_modeling.ipynb, will perform CV on several CNNs, and save CV performance metrics in the results folder, train the final model, and plot final results.
 
 
 ### 5. Deactivating the Virtual Environment

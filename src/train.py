@@ -94,7 +94,25 @@ def train_CV(
     patience=3, 
     save_model_dir='../results/models',
     n_jobs=-1  # Use all available cores by default
-):
+    ):
+    '''
+    Train a model using k-fold cross-validation.
+
+    Parameters:
+        model_name (str): The name of the pretrained model to use. Options: 'VGG16', 'ResNet50', 
+                          'MobileNetV2', 'EfficientNetB0', 'LeNet'.
+        model_desc (str): A description of the model for logging purposes.
+        k (int): The number of folds for cross-validation.
+        EPOCHS (int): The number of epochs to train for.
+        BATCH_SIZE (int): The batch size for training.
+        results_path (str): The path to save the results CSV file.
+        patience (int): The number of epochs to wait for early stopping.
+        save_model_dir (str): The directory to save the best models.
+        n_jobs (int): The number of parallel jobs to run. Set to -1 to use all available cores.
+
+    Returns:
+        dict: A dictionary containing the model description, accuracy, F1-score, and saved model paths.
+    '''
 
     # Load the data
     X_train, y_train = load_data('../data/processed/train/images')  # Customize load_data as needed
