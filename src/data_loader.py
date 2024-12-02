@@ -6,6 +6,7 @@ import os
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+import keras
 
 
 def process_raw_img_data():
@@ -31,27 +32,25 @@ def process_raw_img_data():
         image.save(f'../data/processed/test/images/{ind}')
 
 
-def load_flat_imgs(folder):
-
-    flattened_images = [] # Initialize an empty list to store flattened images
-
-    # Loop over all files in the directory
-    for filename in os.listdir(folder):
-        image = Image.open(os.path.join(folder, filename)).convert('L') # Open the image, convert to grayscale
-        flattened_image = np.array(image).flatten() # Flatten the image and convert it to a numpy array
-        flattened_images.append(flattened_image) # Append the flattened image to the list
-
-    return np.vstack(flattened_images) # Stack all flattened images into a 2D matrix (samples x features)
-
-
-def load_imgs(folder):
+def load_data(folder, flat=False, test=False):
 
     images = [] # Initialize an empty list to store images
+    labels = [] # Initialize an empty list to store labels
+    if test:
+        y_df = pd.read_csv('../data/processed/test/labels.csv').set_index('filename')
+    else:
+        y_df = pd.read_csv('../data/processed/train/labels.csv').set_index('filename')
 
     # Loop over all files in the directory
     for filename in os.listdir(folder):
         image = Image.open(os.path.join(folder, filename)).convert('L') # Open the image, convert to grayscale
         image = np.array(image) # Convert the image to a numpy array
+        if flat:
+            image = image.flatten()
         images.append(image) # Append the image to the list
+        labels.append(y_df.loc[filename]['label'])
 
-    return np.stack(images) # Stack all images into a 3D matrix (samples x height x width)
+    images = np.stack(images).reshape(-1, 130, 180, 1) # Stack all images into a 4D matrix (samples x height x width x 1)
+    labels = keras.utils.to_categorical(np.array(labels)-2, 5) # (samples x num_classes)
+
+    return images, labels

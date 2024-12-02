@@ -42,9 +42,7 @@ For the most part, this project uses the following python packages: sklearn, ker
 The images under the directory data/processed/ are compressed and ready for model training, however, code that performed this preprocessing can be seen in src/data_loader.py
 
 
-Running the main script will train several CNNs, tune hyper parameters, and save performance metrics in the results folder.
-
-    python src/main.py
+Running the main notebook, cnn_modeling.ipynb, will perform CV on several CNNs, and save CV performance metrics in the results folder, train the final model, and plot final results.
 
 
 ### 5. Deactivating the Virtual Environment
